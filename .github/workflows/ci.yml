@@ -9,9 +9,7 @@ on:
     branches:
       - main
       - latest
-  schedule:
     # "At 09:00 UTC (02:00 PT) on Monday" https://crontab.guru/#0_9_*_*_1
-    - cron: "0 9 * * 1"
 
 jobs:
   lint:
@@ -45,7 +43,6 @@ jobs:
 
   test:
     name: Test - ${{ matrix.platform.name }} - ${{ matrix.node-version }}
-    if: github.repository_owner == 'npm'
     strategy:
       fail-fast: false
       matrix:
@@ -54,7 +51,7 @@ jobs:
             os: ubuntu-latest
             shell: bash
           - name: macOS
-            os: macos-latest
+            os: macos-13
             shell: bash
           - name: Windows
             os: windows-latest
